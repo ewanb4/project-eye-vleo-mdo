@@ -1,0 +1,46 @@
+% Create a clean white figure to match your Tradespace graphs
+figure('Name', 'Battery State of Charge', 'Color', 'w');
+
+% Plot the data (converting time from seconds to hours for a cleaner X-axis)
+timeHours = out.tout / 3600;
+
+% Plotting with a nice thick line and an aerospace-yellow color
+plot(timeHours, out.socData, 'LineWidth', 2, 'Color', '#EDB120'); 
+
+% Formal Formatting
+grid on;
+box on;
+title('Battery State of Charge over Multiple Orbits (10:30 AM LTAN)');
+xlabel('Simulation Time (Hours)');
+ylabel('State of Charge (0.0 to 1.0)');
+
+% Set Y-axis limits so we can see the 1.0 plateau and the 0.72 valley perfectly
+ylim([0.65 1.05]);
+xlim([0 max(timeHours)]);
+
+
+
+% Create a clean white figure with a specific name
+figure('Name', 'Calm Baseline Atmospheric Density', 'Color', 'w');
+
+% Convert simulation time from seconds to hours for a cleaner X-axis
+timeHours = out.tout / 3600;
+
+% Extract the density data from the out object
+% We use (:,1) to make sure we grab just the column of data we need
+densityData = out.densityCalm(:,1);
+
+% Plot the data. We use an orange color to differentiate it from other graphs
+plot(timeHours, densityData, 'LineWidth', 2, 'Color', '#D95319'); 
+
+% Formal Formatting
+grid on;
+box on;
+title('VLEO Atmospheric Density (Average Solar Conditions)');
+xlabel('Simulation Time (Hours)');
+ylabel('Total Mass Density \rho (kg/m^3)');
+
+% The density numbers are incredibly small (10^-12), so let's lock in 
+% an appropriate Y-axis range that visualizes the diurnal bulge clearly.
+ylim([0 30e-12]); % Sets range from 0 to 30 x 10^-12
+xlim([0 max(timeHours)]); % Locks the time window to the simulation end
