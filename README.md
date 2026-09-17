@@ -23,6 +23,6 @@ The architecture sizes a Very Low Earth Orbit (VLEO) satellite, resolving couple
 - `media/`: Has figures from all tests completed for final presentation deliverable.
 
 ## Guide
-- Use trade_constants.m first to load constants into workspace
+- Use trade_constants.m first to load constants into workspace.
 - Use TradeSpaceTool.m and PowerAndPropulsionSizingTool.m as main scripts in that order.
 - Use SIMULINK AdvancedOrbitModel.slx for dynamic Power and Environment results.
