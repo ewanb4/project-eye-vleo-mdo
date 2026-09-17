@@ -20,6 +20,7 @@ The architecture sizes a Very Low Earth Orbit (VLEO) satellite, resolving couple
 ## Contents
 - `src/`: MATLAB trade space scripts and SIMULINK orbit/power propagation models.
 - `docs/`: Technical slide deck and preliminary system requirements.
+- `media/`: Has figures from all tests completed for final presentation deliverable.
 
 ## Guide
 - Use trade_constants.m first to load constants into workspace
