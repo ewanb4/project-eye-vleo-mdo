@@ -1,0 +1,31 @@
+function [finalAperture, finalFocalLen, finalSNR, finalOtaMass] = optimisePayload(minAperture, slantRange, velocity, gsd, wavelength)
+
+% Set starting points.
+currentAperture = minAperture;
+currentSNR = SNRCalculator(currentAperture, slantRange, velocity, gsd, wavelength);
+
+% Prevent infinite Loops
+maxIterations = 5000;
+iteration = 0;
+
+while currentSNR < 100 && iteration < maxIterations
+    % Increase Diameter by 1mm
+    currentAperture = currentAperture + 0.001;
+    
+    % Recalculate SNR for new Diameter
+    currentSNR = SNRCalculator(currentAperture, slantRange, velocity, gsd, wavelength);
+    
+    iteration = iteration + 1;
+end 
+
+if iteration == maxIterations
+    warning("SNR Optimisation Failure");
+end
+
+finalAperture = currentAperture;
+finalFocalLen = 6 * finalAperture;
+finalSNR = currentSNR;
+finalOtaMass = 146 * (finalAperture ^ 1.27);
+
+
+
